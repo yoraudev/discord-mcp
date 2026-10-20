@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src tests tools",
     "test": "vitest run",
+    "test:live": "node --env-file=.env tools/live-test.mjs",
     "docs:generate": "node tools/run-check.mjs docs",
     "coverage:check": "node tools/check.mjs",
     "package:check": "node tools/package-check.mjs",

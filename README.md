@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/images/logo.svg" width="128" height="128" alt="discord-mcp logo"></p>
+
 # discord-mcp
 
 Control a Discord bot from an AI model through Model Context Protocol. Each supported Discord operation has its own tool, with validated inputs, structured results and links to the official Discord reference.
@@ -93,6 +95,8 @@ Use `npm run reference:sync` to refresh the ignored official-document cache, the
 Work is committed to `dev`. `main` changes through pull requests from `dev`; keep `dev` after merging. Configure remote branch protection to require the CI job. Documentation-only and test-only merges do not publish a release. GitHub Actions can also publish a release through **Run workflow**.
 
 The [development guide](docs/development.md) describes validation, live Discord testing and release setup. Follow [AGENTS.md](AGENTS.md) when changing the project.
+
+For operator-authorized isolated Discord testing, configure `DISCORD_TEST_GUILD_ID` in the local `.env` and run `npm run test:live -- --guild-id YOUR_GUILD_ID`. The runner protects existing channels, including `gifs`, and cleans up only objects created during its run. See [live testing](docs/live-testing.md).
 
 ## License
 

@@ -72,6 +72,18 @@ describe('interaction deadlines', () => {
     interactions.resolve(latest.interaction_handle).acknowledgement_deadline = Date.now() - 1;
     await expect(interactions.respond(latest.interaction_handle, { type: 4 })).rejects.toMatchObject({ code: 'INTERACTION_DEADLINE' });
   });
+
+  it('answers autocomplete and final search submission as separate interactions', async () => {
+    const request = vi.fn<typeof fetch>(async () => new Response(null, { status: 204 }));
+    const queue = new EventQueue();
+    const interactions = new Interactions(new DiscordRest(undefined, request), queue);
+    interactions.setRule({ id: 'suggest', command_name: 'search', interaction_type: 4, response: { type: 8, data: { choices: [{ name: 'Result', value: 'result' }] } } });
+    interactions.setRule({ id: 'submit', command_name: 'search', interaction_type: 2, response: { type: 4, data: { content: 'Search completed.', flags: 64 } } });
+    await interactions.receive({ id: '22', application_id: '33', token: 'secret', type: 4, data: { name: 'search' } });
+    await interactions.receive({ id: '23', application_id: '33', token: 'secret', type: 2, data: { name: 'search' } });
+    expect(request.mock.calls.map(([, init]) => JSON.parse(init?.body as string).type)).toEqual([8, 4]);
+    expect((await queue.poll()).events.map(event => (event.data as { acknowledgement: number }).acknowledgement)).toEqual([8, 4]);
+  });
 });
 
 describe('Gateway lifecycle and credential handling', () => {

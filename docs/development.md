@@ -8,6 +8,8 @@ The inventory is a reviewed snapshot of official Discord documentation. `npm run
 
 Live tests require operator-provided credentials and a disposable guild. They are never run against arbitrary existing servers. Run the built server through an MCP client, then verify this sequence:
 
+The automated runner is `npm run test:live -- --guild-id YOUR_GUILD_ID`, with a matching `DISCORD_TEST_GUILD_ID` in the local environment. It creates a separate category, rejects calls targeting existing channels and preserves `gifs` and its descendants. Existing server configuration and role permissions are not modified. Reports are written under the ignored `.cache` directory. See [live testing](live-testing.md) for its boundaries.
+
 1. Inspect `discord_status`, guilds and channel listing.
 2. Create a temporary text channel; send, retrieve, edit, react to, pin and delete a message with a small attachment.
 3. Create a temporary role, assign and remove it from a test account, then delete it. Verify permission-denied behavior with an appropriately restricted bot.
@@ -17,7 +19,7 @@ Live tests require operator-provided credentials and a disposable guild. They ar
 7. If webhook events are enabled, verify the public URL handshake, signed event delivery and invalid-signature rejection.
 8. Restart the connection and process, confirm connection status events and stale-cursor rejection, then remove every temporary object created during testing.
 
-Mock test success does not certify live Discord permissions or application eligibility. Record live validation separately when credentials are available.
+Mock test success does not certify live Discord permissions or application eligibility. Record live validation separately when credentials are available. The current [live validation results](live-test-results.md) distinguish observed behavior from untested prerequisites.
 
 ## Git and release
 

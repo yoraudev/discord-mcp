@@ -31,4 +31,6 @@ Automatic branch deletion is disabled, and merge commits preserve the shared `de
 
 CI runs type checking, lint, build, Vitest, inventory consistency, comment-free source/configuration rules and Markdown-link checks on Windows and Linux. Product-path changes merged into `main` trigger release; docs, tests and tools alone do not. Manual dispatch is also supported. The package manifest supplies major/minor version, while existing matching tags determine the next patch version. Release packaging updates version metadata in the workflow checkout, builds a tarball, checks installation and computes SHA-256 before publishing a GitHub Release. Packages are not sent to npm registry.
 
+`npm run package:check` packs and installs under an isolated `.cache` directory, then starts the installed server through stdio. Installation prefers cached dependencies but can fetch missing npm metadata and packages on a clean CI runner. It does not require a prewarmed npm cache or create a tarball in the project root.
+
 The initial license follows Opal's attribution and origin-preservation conditions with discord-mcp's project identity. Repository rules are in [AGENTS.md](../AGENTS.md).

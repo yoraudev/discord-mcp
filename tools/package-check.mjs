@@ -8,10 +8,10 @@ const installEnvironment = Object.fromEntries(Object.entries(process.env).filter
 installEnvironment.npm_config_ignore_scripts = 'true';
 const directory = resolve('.cache', `package-check-${crypto.randomUUID()}`);
 await mkdir(directory, { recursive: true });
-const packed = JSON.parse(execFileSync(process.execPath, [npm, 'pack', '--json', '--ignore-scripts'], { encoding: 'utf8' }));
-const tarball = resolve(packed[0].filename);
+const packed = JSON.parse(execFileSync(process.execPath, [npm, 'pack', '--json', '--ignore-scripts', '--pack-destination', directory], { encoding: 'utf8' }));
+const tarball = resolve(directory, packed[0].filename);
 await writeFile(resolve(directory, 'package.json'), JSON.stringify({ name: 'discord-mcp-install-check', version: '1.0.0', private: true }));
-execFileSync(process.execPath, [npm, 'install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', tarball], { cwd: directory, stdio: 'inherit', env: installEnvironment });
+execFileSync(process.execPath, [npm, 'install', '--prefer-offline', '--ignore-scripts', '--no-audit', '--no-fund', tarball], { cwd: directory, stdio: 'inherit', env: installEnvironment });
 const installed = resolve(directory, 'node_modules/@yoraudev/discord-mcp');
 const entry = resolve(installed, 'dist/index.js');
 await readFile(entry);

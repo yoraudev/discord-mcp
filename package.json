@@ -1,0 +1,39 @@
+{
+  "name": "@yoraudev/discord-mcp",
+  "version": "0.1.0",
+  "description": "A comprehensive local MCP server for a Discord bot and its application.",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "yoraudev <yorauprojects@gmail.com>",
+  "repository": { "type": "git", "url": "https://github.com/yoraudev/discord-mcp.git" },
+  "engines": { "node": ">=24.17.0" },
+  "bin": { "discord-mcp": "dist/index.js" },
+  "files": ["dist", "docs", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests tools",
+    "test": "vitest run",
+    "test:live": "node --env-file=.env tools/live-test.mjs",
+    "docs:generate": "node tools/run-check.mjs docs",
+    "coverage:check": "node tools/check.mjs",
+    "package:check": "node tools/package-check.mjs",
+    "check": "node tools/run-check.mjs",
+    "prepack": "npm run build",
+    "start": "node --env-file-if-exists=.env dist/index.js",
+    "reference:sync": "node tools/sync-reference.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "discord.js": "14.27.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.1",
+    "@types/node": "26.6.5",
+    "eslint": "10.13.0",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "8.72.0",
+    "vitest": "5.0.5"
+  }
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none" role="img" aria-labelledby="title description">
+  <title id="title">discord-mcp</title>
+  <desc id="description">A Discord-inspired bot face connected to three protocol nodes.</desc>
+  <g stroke="#5865F2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M58 37 82 70M198 37l-24 33M128 159v51"/>
+  </g>
+  <g fill="#5865F2">
+    <circle cx="52" cy="28" r="12"/>
+    <circle cx="204" cy="28" r="12"/>
+    <circle cx="128" cy="222" r="12"/>
+    <path d="M77 64c16-7 33-11 51-11s35 4 51 11l-5 11c22 18 36 43 42 74-12 12-26 21-42 27l-11-15c-11 4-23 6-35 6s-24-2-35-6l-11 15c-16-6-30-15-42-27 6-31 20-56 42-74l-5-11Z"/>
+  </g>
+  <g fill="#FFF">
+    <ellipse cx="96" cy="119" rx="13" ry="15"/>
+    <ellipse cx="160" cy="119" rx="13" ry="15"/>
+  </g>
+</svg>

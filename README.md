@@ -8,15 +8,17 @@ The server runs locally over stdio and controls one bot across all the servers i
 
 ## Install
 
-Install Node.js 24.17 or newer. Download the `.tgz` package from a GitHub Release, then install it, replacing `VERSION` with the downloaded version:
+Install Node.js 24.17 or newer. Download the `.tgz` package from [GitHub Releases](https://github.com/yoraudev/discord-mcp/releases), then install it, replacing `VERSION` with the downloaded version:
 
 ```bash
 npm install -g ./yoraudev-discord-mcp-VERSION.tgz
 ```
 
-Releases are published after product changes merge from `dev` into `main`. There is no npm registry publication. Until a remote repository and its first release exist, build from this checkout:
+Releases are published after product changes merge from `dev` into `main`. There is no npm registry publication. To build from source:
 
 ```bash
+git clone https://github.com/yoraudev/discord-mcp.git
+cd discord-mcp
 npm ci
 npm run build
 ```
@@ -79,7 +81,6 @@ Features remain subject to Discord permissions, role hierarchy, intents, applica
 - Deferrable interactions are acknowledged automatically. Configure immediate modal/autocomplete rules before users trigger them. Use the interaction handle from the event to edit the original response or send followups.
 - Webhook tokens returned by Discord are replaced with `webhook_handle`; interaction tokens are replaced with `interaction_handle`. Handles expire and cannot be reused after a restart.
 - The webhook receiver needs a public HTTPS reverse proxy to reach the local port. Hosting and tunnels are not created by this project.
-- Discord user-account automation, group DMs, Social SDK lobbies and discontinued duplicate endpoints are outside the bot/application surface. These exclusions are recorded individually in the inventory.
 
 ## Development
 
@@ -92,11 +93,7 @@ npm pack
 
 Use `npm run reference:sync` to refresh the ignored official-document cache, then `node tools/build-reference.mjs` to rebuild the reviewed inventory. Review the inventory and schema overrides before accepting upstream changes. Reference updates must include regenerated documentation and contract tests.
 
-Work is committed to `dev`. `main` changes through pull requests from `dev`; keep `dev` after merging. Configure remote branch protection to require the CI job. Documentation-only and test-only merges do not publish a release. GitHub Actions can also publish a release through **Run workflow**.
-
 The [development guide](docs/development.md) describes validation, live Discord testing and release setup. Follow [AGENTS.md](AGENTS.md) when changing the project.
-
-For operator-authorized isolated Discord testing, configure `DISCORD_TEST_GUILD_ID` in the local `.env` and run `npm run test:live -- --guild-id YOUR_GUILD_ID`. The runner protects existing channels, including `gifs`, and cleans up only objects created during its run. See [live testing](docs/live-testing.md).
 
 ## License
 

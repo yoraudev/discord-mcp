@@ -1132,43 +1132,43 @@
           {
             "name": "content",
             "type": "string",
-            "required": true,
+            "required": false,
             "description": "the message contents (up to 2000 characters) | one of content, file, embeds, poll"
           },
           {
             "name": "embeds",
             "type": "array of up to 10 embed objects",
-            "required": true,
+            "required": false,
             "description": "embedded rich content | one of content, file, embeds, poll"
           },
           {
             "name": "allowed_mentions",
             "type": "allowed mention object",
-            "required": true,
+            "required": false,
             "description": "allowed mentions for the message | false"
           },
           {
             "name": "components",
             "type": "array of message component",
-            "required": true,
+            "required": false,
             "description": "the components to include with the message | false"
           },
           {
             "name": "attachments",
             "type": "array of partial attachment request objects",
-            "required": true,
+            "required": false,
             "description": "metadata for the attachments | false"
           },
           {
             "name": "flags",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "message flags combined as a bitfield (only SUPPRESS_EMBEDS, SUPPRESS_NOTIFICATIONS and IS_COMPONENTS_V2 can be set) | false"
           },
           {
             "name": "poll",
             "type": "poll request object",
-            "required": true,
+            "required": false,
             "description": "A poll! | one of content, file, embeds, poll"
           }
         ]
@@ -2265,43 +2265,43 @@
           {
             "name": "max_age",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "duration of invite in seconds before expiry, or 0 for never. between 0 and 604800 (7 days) | 86400 (24 hours)"
           },
           {
             "name": "max_uses",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "max number of uses or 0 for unlimited. between 0 and 100 | 0"
           },
           {
             "name": "temporary",
             "type": "boolean",
-            "required": true,
+            "required": false,
             "description": "whether this invite only grants temporary membership | false"
           },
           {
             "name": "unique",
             "type": "boolean",
-            "required": true,
+            "required": false,
             "description": "if true, don't try to reuse a similar invite (useful for creating many unique one time use invites) | false"
           },
           {
             "name": "target_type",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "the type of target for this voice channel invite | "
           },
           {
             "name": "target_user_id",
             "type": "snowflake",
-            "required": true,
+            "required": false,
             "description": "the id of the user whose stream to display for this invite, required if target_type is 1, the user must be streaming in the channel | "
           },
           {
             "name": "target_application_id",
             "type": "snowflake",
-            "required": true,
+            "required": false,
             "description": "the id of the embedded application to open for this invite, required if target_type is 2, the application must have the EMBEDDED flag | "
           },
           {
@@ -2996,7 +2996,7 @@
           {
             "name": "roles",
             "type": "array of snowflakes",
-            "required": true,
+            "required": false,
             "description": "roles allowed to use this emoji"
           }
         ]
@@ -4402,7 +4402,7 @@
           {
             "name": "limit",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "max number of members to return (1-1000) | 1"
           }
         ],
@@ -5171,13 +5171,13 @@
           {
             "name": "days",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "number of days to count prune for (1-30) | 7"
           },
           {
             "name": "include_roles",
             "type": "string; comma-delimited array of snowflakes",
-            "required": true,
+            "required": false,
             "description": "role(s) to include | none"
           }
         ],
@@ -5212,19 +5212,19 @@
           {
             "name": "days",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "number of days to prune (1-30) | 7"
           },
           {
             "name": "compute_prune_count",
             "type": "boolean",
-            "required": true,
+            "required": false,
             "description": "whether pruned is returned, discouraged for large guilds | true"
           },
           {
             "name": "include_roles",
             "type": "array of snowflakes",
-            "required": true,
+            "required": false,
             "description": "role(s) to include | none"
           },
           {
@@ -8145,31 +8145,31 @@
           {
             "name": "before",
             "type": "snowflake",
-            "required": true,
+            "required": false,
             "description": "get guilds before this guild ID | false | absent"
           },
           {
             "name": "after",
             "type": "snowflake",
-            "required": true,
+            "required": false,
             "description": "get guilds after this guild ID | false | absent"
           },
           {
             "name": "limit",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "max number of guilds to return (1-200) | false | 200"
           },
           {
             "name": "shard",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "only return guilds in this shard (0 to max_concurrency - 1) | false, unless using large bot sharding | absent"
           },
           {
             "name": "with_counts",
             "type": "boolean",
-            "required": true,
+            "required": false,
             "description": "include approximate member and presence counts in response | false | false"
           }
         ],
@@ -8859,19 +8859,19 @@
           {
             "name": "wait",
             "type": "boolean",
-            "required": true,
+            "required": false,
             "description": "waits for server confirmation of message send before response, and returns the created message body (defaults to false; when false a message that is not saved does not return an error) | false"
           },
           {
             "name": "thread_id",
             "type": "snowflake",
-            "required": true,
+            "required": false,
             "description": "Send a message to the specified thread within a webhook's channel. The thread will automatically be unarchived. | false"
           },
           {
             "name": "with_components",
             "type": "boolean",
-            "required": true,
+            "required": false,
             "description": "whether to respect the components field of the request. When enabled, allows application-owned webhooks to use all components and non-owned webhooks to use non-interactive components. (defaults to false) | false"
           }
         ],
@@ -8879,67 +8879,67 @@
           {
             "name": "content",
             "type": "string",
-            "required": true,
+            "required": false,
             "description": "the message contents (up to 2000 characters) | one of content, file, embeds, poll"
           },
           {
             "name": "username",
             "type": "string",
-            "required": true,
+            "required": false,
             "description": "override the default username of the webhook | false"
           },
           {
             "name": "avatar_url",
             "type": "string",
-            "required": true,
+            "required": false,
             "description": "override the default avatar of the webhook | false"
           },
           {
             "name": "embeds",
             "type": "array of up to 10 embed objects",
-            "required": true,
+            "required": false,
             "description": "embedded rich content | one of content, file, embeds, poll"
           },
           {
             "name": "allowed_mentions",
             "type": "allowed mention object",
-            "required": true,
+            "required": false,
             "description": "allowed mentions for the message | false"
           },
           {
             "name": "components",
             "type": "array of message component",
-            "required": true,
+            "required": false,
             "description": "the components to include with the message | false"
           },
           {
             "name": "attachments",
             "type": "array of partial attachment request objects",
-            "required": true,
+            "required": false,
             "description": "metadata for the attachments | false"
           },
           {
             "name": "flags",
             "type": "integer",
-            "required": true,
+            "required": false,
             "description": "message flags combined as a bitfield (only SUPPRESS_EMBEDS, SUPPRESS_NOTIFICATIONS and IS_COMPONENTS_V2 can be set) | false"
           },
           {
             "name": "thread_name",
             "type": "string",
-            "required": true,
+            "required": false,
             "description": "name of thread to create (requires the webhook channel to be a forum or media channel) | false"
           },
           {
             "name": "applied_tags",
             "type": "array of snowflakes",
-            "required": true,
+            "required": false,
             "description": "array of tag ids to apply to the thread (requires the webhook channel to be a forum or media channel) | false"
           },
           {
             "name": "poll",
             "type": "poll request object",
-            "required": true,
+            "required": false,
             "description": "A poll! | one of content, file, embeds, poll"
           }
         ]
@@ -8969,13 +8969,13 @@
           {
             "name": "thread_id",
             "type": "snowflake",
-            "required": true,
+            "required": false,
             "description": "id of the thread to send the message in | false"
           },
           {
             "name": "wait",
             "type": "boolean",
-            "required": true,
+            "required": false,
             "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error) | false"
           }
         ],
@@ -9006,13 +9006,13 @@
           {
             "name": "thread_id",
             "type": "snowflake",
-            "required": true,
+            "required": false,
             "description": "id of the thread to send the message in | false"
           },
           {
             "name": "wait",
             "type": "boolean",
-            "required": true,
+            "required": false,
             "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error) | false"
           }
         ],
@@ -9043,7 +9043,7 @@
           {
             "name": "thread_id",
             "type": "snowflake",
-            "required": true,
+            "required": false,
             "description": "id of the thread the message is in | false"
           }
         ],
@@ -9154,7 +9154,7 @@
           {
             "name": "thread_id",
             "type": "snowflake",
-            "required": true,
+            "required": false,
             "description": "id of the thread the message is in | false"
           }
         ],

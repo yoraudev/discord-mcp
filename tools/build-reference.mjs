@@ -18,6 +18,7 @@ for (const file of (await readdir('.cache/reference')).filter(file => file.endsW
     const fields = { query: [], body: [] };
     let target;
     let inTable = false;
+    let tableHeaders = [];
     for (const line of section.split('\n')) {
       if (/^#{3,6} /.test(line)) {
         target = /Query String (?:Params|Parameters)/i.test(line) ? 'query' : /(?:JSON|Form|Request Body).*?(?:Params|Parameters|Fields)|JSON Body/i.test(line) ? 'body' : undefined;
@@ -25,14 +26,18 @@ for (const file of (await readdir('.cache/reference')).filter(file => file.endsW
       }
       if (!target || !line.startsWith('|')) continue;
       const cells = line.split('|').slice(1, -1).map(clean);
-      if (/^(field|param|parameter)$/i.test(cells[0] ?? '')) { inTable = true; continue; }
+      if (/^(field|param|parameter)$/i.test(cells[0] ?? '')) { inTable = true; tableHeaders = cells.map(cell => cell.toLowerCase()); continue; }
       if (!inTable || !cells[0] || /^[-: ]+$/.test(cells[0])) continue;
       const raw = cells[0];
       const name = raw.replace(/[?*]/g, '').trim();
       if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name) || ['payload_json', 'tts'].includes(name)) continue;
       const nullable = /All parameters to this endpoint are optional and nullable/i.test(section);
       const type = `${nullable && !cells[1]?.startsWith('?') ? '?' : ''}${cells[1] ?? 'JSON'}`;
-      if (!fields[target].some(field => field.name === name)) fields[target].push({ name, type, required: !raw.includes('?') && !/All JSON params are optional|All parameters (?:to this endpoint )?are optional/i.test(section) && !/^Modify |^Edit /.test(title), description: cells.slice(2).join(' | ') });
+      const requiredColumn = tableHeaders.indexOf('required');
+      const defaultColumn = tableHeaders.indexOf('default');
+      const allOptional = /All JSON (?:params|parameters)(?: for this route)? are optional|All parameters (?:to this endpoint )?are optional/i.test(section);
+      const required = requiredColumn >= 0 ? /^(?:true|yes|required)$/i.test(cells[requiredColumn] ?? '') : !raw.includes('?') && !allOptional && !/^Modify |^Edit /.test(title) && !(defaultColumn >= 0 && cells[defaultColumn]);
+      if (!fields[target].some(field => field.name === name)) fields[target].push({ name, type, required: Boolean(required), description: cells.slice(2).join(' | ') });
     }
     const audio = /soundboard|voice-message|Send Soundboard/i.test(`${file} ${title}`);
     const disabled = title === 'Batch Edit Application Command Permissions';
@@ -70,6 +75,7 @@ for (const entry of entries.filter(entry => entry.kind === 'rest')) {
     entry.multipart ||= parent.multipart;
   }
   if (entry.fields.body.some(field => field.type === 'file')) entry.multipart = true;
+  if (entry.title === 'Create Guild Emoji') for (const field of entry.fields.body) if (field.name === 'roles') field.required = false;
   if (entry.status !== 'excluded' && /requires? (?:the )?`[^`]+` (?:OAuth2 )?scope/i.test(entry.conditions.join(' '))) entry.status = 'conditional';
 }
 for (const entry of entries.filter(entry => entry.kind === 'webhook' && entry.status !== 'excluded')) entry.status = 'conditional';

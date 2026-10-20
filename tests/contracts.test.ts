@@ -41,4 +41,16 @@ describe('tool operation contracts', () => {
       expect(new Set(runtime.tools.map(tool => tool.name)).size).toBe(runtime.tools.length);
     } finally { await runtime.close(); }
   });
+
+  it('accepts minimal invite, webhook and emoji bodies without optional or conditional fields', () => {
+    const examples = [
+      ['Create Channel Invite', { channel_id: '22', body: { max_age: 300, max_uses: 1, unique: true } }],
+      ['Execute Webhook', { webhook_handle: crypto.randomUUID(), query: { wait: true }, body: { content: 'hello', allowed_mentions: { parse: [] } } }],
+      ['Create Guild Emoji', { guild_id: '22', body: { name: 'test_emoji', image: 'data:image/png;base64,iVBORw==' } }]
+    ] as const;
+    for (const [title, input] of examples) {
+      const operation = reference.find(entry => entry.title === title)!;
+      expect(inputSchema(operation).safeParse(input).success, title).toBe(true);
+    }
+  });
 });

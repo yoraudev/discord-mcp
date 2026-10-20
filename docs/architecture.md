@@ -26,6 +26,8 @@ Signed HTTP webhook events ---------------------> bounded event queue
 
 Each REST tool accepts path arguments at the top level, optional `query`, a typed `body`, optional uploads and an audit reason where Discord supports it. IDs are decimal strings. Nested Discord objects use JSON object schemas with their official field descriptions; Discord validates feature-specific nested constraints. Nullable fields retain null, and omitted properties are not sent. Array-body operations send an array rather than wrapping it in an object.
 
+Reference extraction honors explicit Required and Default columns, endpoint-wide optionality and conditional field groups. Conditional webhook content alternatives are not individually mandatory. Guild emoji role restrictions are optional; omitting them creates an unrestricted emoji.
+
 Responses use MCP structured content with `data`; failures set `isError` and contain a code, message, optional HTTP status and sanitized Discord error details. Discord remains authoritative for permissions, hierarchy and feature eligibility. No generic arbitrary-route tool is exposed.
 
 All REST requests share serialized coordination to prevent conflicting writes and respect response-driven rate limits. Interaction acknowledgements use an independent REST client because callback routes have their own limits and must not wait behind ordinary bot requests. Network failures never automatically retry writes; explicit 429 responses can be retried after Discord's delay. Client cancellation propagates to requests and long polling.

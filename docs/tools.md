@@ -2100,15 +2100,6 @@ Create Followup Message. Reference: https://docs.discord.com/developers/interact
           "description": "poll request object: A poll! | one of content, file, embeds, poll"
         }
       },
-      "required": [
-        "content",
-        "embeds",
-        "allowed_mentions",
-        "components",
-        "attachments",
-        "flags",
-        "poll"
-      ],
       "additionalProperties": false
     },
     "files": {
@@ -2144,8 +2135,7 @@ Create Followup Message. Reference: https://docs.discord.com/developers/interact
     }
   },
   "required": [
-    "interaction_handle",
-    "body"
+    "interaction_handle"
   ],
   "additionalProperties": false,
   "$defs": {
@@ -4003,15 +3993,6 @@ Create Channel Invite. Discord permissions: CREATE_INSTANT_INVITE, MANAGE_ROLES.
           "description": "array of snowflakes: the role ID(s) for roles in the guild given to the users that accept this invite | "
         }
       },
-      "required": [
-        "max_age",
-        "max_uses",
-        "temporary",
-        "unique",
-        "target_type",
-        "target_user_id",
-        "target_application_id"
-      ],
       "additionalProperties": false
     },
     "files": {
@@ -4051,8 +4032,7 @@ Create Channel Invite. Discord permissions: CREATE_INSTANT_INVITE, MANAGE_ROLES.
     }
   },
   "required": [
-    "channel_id",
-    "body"
+    "channel_id"
   ],
   "additionalProperties": false
 }
@@ -4859,8 +4839,7 @@ Create Guild Emoji. Discord permissions: CREATE_GUILD_EXPRESSIONS. Reference: ht
       },
       "required": [
         "name",
-        "image",
-        "roles"
+        "image"
       ],
       "additionalProperties": false
     },
@@ -7012,8 +6991,7 @@ Search Guild Members. Reference: https://docs.discord.com/developers/resources/g
         }
       },
       "required": [
-        "query",
-        "limit"
+        "query"
       ],
       "additionalProperties": false
     }
@@ -8050,10 +8028,6 @@ Get Guild Prune Count. Discord permissions: KICK_MEMBERS, MANAGE_GUILD. Referenc
           "description": "string; comma-delimited array of snowflakes: role(s) to include | none"
         }
       },
-      "required": [
-        "days",
-        "include_roles"
-      ],
       "additionalProperties": false
     }
   },
@@ -8107,11 +8081,6 @@ Begin Guild Prune. Discord permissions: KICK_MEMBERS, MANAGE_GUILD. Reference: h
           "description": "string: reason for the prune (deprecated) | "
         }
       },
-      "required": [
-        "days",
-        "compute_prune_count",
-        "include_roles"
-      ],
       "additionalProperties": false
     },
     "audit_reason": {
@@ -8120,8 +8089,7 @@ Begin Guild Prune. Discord permissions: KICK_MEMBERS, MANAGE_GUILD. Reference: h
     }
   },
   "required": [
-    "guild_id",
-    "body"
+    "guild_id"
   ],
   "additionalProperties": false
 }
@@ -10955,13 +10923,6 @@ Get Current User Guilds. Reference: https://docs.discord.com/developers/resource
           "description": "boolean: include approximate member and presence counts in response | false | false"
         }
       },
-      "required": [
-        "before",
-        "after",
-        "limit",
-        "shard",
-        "with_counts"
-      ],
       "additionalProperties": false
     }
   },
@@ -11680,11 +11641,6 @@ Execute Webhook. Reference: https://docs.discord.com/developers/resources/webhoo
           "description": "boolean: whether to respect the components field of the request. When enabled, allows application-owned webhooks to use all components and non-owned webhooks to use non-interactive components. (defaults to false) | false"
         }
       },
-      "required": [
-        "wait",
-        "thread_id",
-        "with_components"
-      ],
       "additionalProperties": false
     },
     "body": {
@@ -11780,19 +11736,6 @@ Execute Webhook. Reference: https://docs.discord.com/developers/resources/webhoo
           "description": "poll request object: A poll! | one of content, file, embeds, poll"
         }
       },
-      "required": [
-        "content",
-        "username",
-        "avatar_url",
-        "embeds",
-        "allowed_mentions",
-        "components",
-        "attachments",
-        "flags",
-        "thread_name",
-        "applied_tags",
-        "poll"
-      ],
       "additionalProperties": false
     },
     "files": {
@@ -11828,8 +11771,7 @@ Execute Webhook. Reference: https://docs.discord.com/developers/resources/webhoo
     }
   },
   "required": [
-    "webhook_handle",
-    "body"
+    "webhook_handle"
   ],
   "additionalProperties": false,
   "$defs": {
@@ -11899,10 +11841,6 @@ Execute Slack-Compatible Webhook. Reference: https://docs.discord.com/developers
           "description": "boolean: waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error) | false"
         }
       },
-      "required": [
-        "thread_id",
-        "wait"
-      ],
       "additionalProperties": false
     },
     "body": {
@@ -11986,10 +11924,6 @@ Execute GitHub-Compatible Webhook. Reference: https://docs.discord.com/developer
           "description": "boolean: waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error) | false"
         }
       },
-      "required": [
-        "thread_id",
-        "wait"
-      ],
       "additionalProperties": false
     },
     "body": {
@@ -12073,9 +12007,6 @@ Get Webhook Message. Reference: https://docs.discord.com/developers/resources/we
           "description": "snowflake: id of the thread the message is in | false"
         }
       },
-      "required": [
-        "thread_id"
-      ],
       "additionalProperties": false
     }
   },
@@ -12358,9 +12289,6 @@ Delete Webhook Message. Reference: https://docs.discord.com/developers/resources
           "description": "snowflake: id of the thread the message is in | false"
         }
       },
-      "required": [
-        "thread_id"
-      ],
       "additionalProperties": false
     }
   },
